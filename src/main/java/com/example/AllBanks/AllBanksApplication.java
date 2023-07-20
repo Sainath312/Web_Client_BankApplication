@@ -4,6 +4,7 @@ import com.example.AllBanks.Entity.AccountEntity;
 import com.example.AllBanks.Entity.UserEntity;
 import com.fasterxml.jackson.databind.JsonNode;
 import jakarta.annotation.PostConstruct;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpHeaders;
@@ -28,12 +29,17 @@ public class AllBanksApplication {
 	}
 	@GetMapping("/getBalance/{id}")
 	public Mono<JsonNode> getAccountBalance(@PathVariable int id){
-		return webClient.get().uri("/getBalance/"+id).retrieve().bodyToMono(JsonNode.class);
+		return webClient.get().uri("/balance/"+id).retrieve().bodyToMono(JsonNode.class);
 	}
 	@PutMapping("/addBalanceToAccount")
 	public Mono<JsonNode> addBalance(@RequestBody AccountEntity account){
 		return webClient.put().uri("/addBalance").bodyValue(account).retrieve().bodyToMono(JsonNode.class);
 	}
+		@GetMapping("/mysqlDetails")
+	public Mono<JsonNode> sqlDetails(){
+		return webClient.get().uri("/customPropertiesMessage").retrieve().bodyToMono(JsonNode.class);
+	}
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(AllBanksApplication.class, args);

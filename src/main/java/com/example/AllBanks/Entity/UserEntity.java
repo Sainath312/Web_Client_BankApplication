@@ -11,11 +11,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserEntity {
-    private long id;
+    private long userID;
     private String userName;
     private String userPassword;
     private String emailID;
     private String phoneNumber;
+
 
 
 

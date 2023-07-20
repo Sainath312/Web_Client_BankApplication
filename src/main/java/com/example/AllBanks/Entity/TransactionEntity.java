@@ -16,6 +16,7 @@ public class TransactionEntity {
 
     private long transactionId;
     private AccountEntity account_ID;
+
     private String transactionType;
     private double amount;
     private LocalDate transactionDate ;
